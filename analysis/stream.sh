@@ -1,7 +1,7 @@
 #!/bin/bash
 
 function streAM {
-	java -jar ../build/analysis.jar /Users/benni/TUD/datasets/dynamic/stream/loop/ loop-7.stream 66666 false true true StreAM $1
+	java -jar ../build/stream.jar $dataset $maxTimestamp false true true StreAM $1
 }
 
 function matrix {
@@ -15,7 +15,7 @@ function matrix {
 	matrix=()
 
 	current='-1'
-	for value in $(cat $file); do
+	for value in $(cat $file | grep -v 'sec'); do
 		if [[ $current -eq '-1' ]]; then
 			current=$value
 		else
@@ -47,15 +47,18 @@ function matrix {
 }
 
 
+dataset="/Users/benni/TUD/datasets/dynamic/stream/loop/loop-7.stream"
+maxTimestamp="66666"
 
+nodes="4"
 groups=("0_2_14_15" "2_5_16_6" "3_7_12_13" "4_12_6_13" "8_11_0_1")
-# groups=("0_2_14_15")
 
 for group in ${groups[@]}; do
-	src="../results/loop-7--${group}.txt"
-	dst="../results/loop-7--${group}--StreAM"
-	echo $group
+	src="results/loop-7--${group}.txt"
+	dst="results/loop-7--${group}--StreAM"
+	echo "processing $group"
+	if [[ ! -d "results/" ]]; then mkdir results; fi
 	streAM $group > $src
 	# matrix 4 $src "	" > "${dst}.txt"
-	matrix 4 $src ";" > "${dst}.csv"
+	matrix $nodes $src ";" > "${dst}.csv"
 done
