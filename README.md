@@ -9,6 +9,7 @@
 	build/
 		|- build.xml (ant build file)
 		|- datasets.jar
+		|- stats.jar
 		|- stream.jar
 	datasets/
 		(examplary datasets of the stream file format)
@@ -38,6 +39,45 @@ This program allows us to transform a dynamic graph given in the DNA format into
 An example of the usage of the program:
 
 	java -jar datasets.jar datasets/test/ 0.dnag .dnab 10 230 > test.stream
+
+### stats.jar
+
+This program allows for the extraction of statistics from an existing `stream` file.
+Depending on the second argument, summary statistics can be written as well as statistics over time.
+
+	expecting 2 arguments (got 0)
+		0: dataset - path & filename to dataset (String)
+		1: printtype - what kind of data should be printed? (String)
+			values:  StatsOnly DataOnly All
+
+An example for the usage of the program:
+
+	java -jar stats.jar test.stream StatsOnly
+
+An example of the stats output looks as follows:
+
+	# nodes:            490
+	# initial edges     1901
+	# states:           20000
+	# first timestamp:  0
+	# last timestamp:   19999
+	# total additions:  1408986
+	# total removals:   1407177
+	# add per state:    70.4493
+	# remove per state: 70.35885
+
+An example of the first part of the data output looks as follows:
+
+	# index	timestamp	additions	removals	nodes	edges
+	0	0	1901	0	490	1901
+	1	1	54	60	490	1895
+	2	2	123	39	490	1979
+	3	3	74	78	490	1975
+	4	4	74	67	490	1982
+	5	5	79	66	490	1995
+	6	6	65	72	490	1988
+
+This data can be used as input for plotting using the `stats.plg` file (located in `analysis/`).
 
 ### stream.jar
 
