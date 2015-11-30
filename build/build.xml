@@ -1,10 +1,20 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <project default="all" name="all">
-    <target name="all" depends="datasets,stream"/>
+    <target name="all" depends="datasets,stats,stream"/>
     <target name="datasets">
         <jar destfile="datasets.jar" filesetmanifest="mergewithoutmain">
             <manifest>
                 <attribute name="Main-Class" value="streaM_k.util.DatasetTransformation"/>
+                <attribute name="Class-Path" value="."/>
+            </manifest>
+            <fileset dir="/Users/benni/TUD/Projects/ArgList/bin"/>
+            <fileset dir="../java/bin"/>
+        </jar>
+    </target>
+    <target name="stats">
+        <jar destfile="stats.jar" filesetmanifest="mergewithoutmain">
+            <manifest>
+                <attribute name="Main-Class" value="streaM_k.util.DatasetStats"/>
                 <attribute name="Class-Path" value="."/>
             </manifest>
             <fileset dir="/Users/benni/TUD/Projects/ArgList/bin"/>
