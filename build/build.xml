@@ -2,7 +2,7 @@
 <project default="all" name="all">
     <target name="all" depends="datasets,stats,stream"/>
     <target name="datasets">
-        <jar destfile="datasets.jar" filesetmanifest="mergewithoutmain">
+        <jar destfile="datasetsForStream.jar" filesetmanifest="mergewithoutmain">
             <manifest>
                 <attribute name="Main-Class" value="streaM_k.util.DatasetTransformation"/>
                 <attribute name="Class-Path" value="."/>
@@ -12,7 +12,7 @@
         </jar>
     </target>
     <target name="stats">
-        <jar destfile="stats.jar" filesetmanifest="mergewithoutmain">
+        <jar destfile="streamStats.jar" filesetmanifest="mergewithoutmain">
             <manifest>
                 <attribute name="Main-Class" value="streaM_k.util.DatasetStats"/>
                 <attribute name="Class-Path" value="."/>
