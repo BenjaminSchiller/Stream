@@ -1,0 +1,230 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage{amssymb}
+\usepackage{algorithm2e}
+\usepackage{booktabs}
+\usepackage{todonotes}
+
+\newcommand{\eqn}[1]{
+	\begin{equation*}
+		#1
+	\end{equation*}
+}
+
+\newcommand{\eqna}[1]{
+	\begin{eqnarray*}
+		#1
+	\end{eqnarray*}
+}
+
+\newcommand{\missing}[1]{
+	\rule{0.8\textwidth}{.5pt}
+
+	\dots\dots\dots\dots\dots\dots\dots
+
+	#1
+
+	\dots\dots\dots\dots\dots\dots\dots
+
+	\rule{0.8\textwidth}{.5pt}
+}
+
+
+\usepackage{graphicx}
+\graphicspath{{images/}}
+\DeclareGraphicsExtensions{.pdf,.png,.jpg}
+
+\newcommand{\img}[4]{
+	% #1 - source
+	% #2 - label
+	% #3 - caption
+	% #4 width, relative to \textwidth
+	\begin{figure}[!t]
+		\centering
+		\includegraphics[width=#4\textwidth]{#1}
+		\caption{#3}
+		\label{#2}
+	\end{figure}
+}
+
+\newcommand{\imgs}[8]{
+	\begin{figure}[!tbh]
+		\begin{minipage}[b]{#4\textwidth}
+			\centering
+			\includegraphics[width=\textwidth]{#1}
+			\caption{#3}
+			\label{#2}
+		\end{minipage}
+		\hfill
+		\begin{minipage}[b]{#8\textwidth}
+			\centering
+			\includegraphics[width=\textwidth]{#5}
+			\caption{#7}
+			\label{#6}
+		\end{minipage}
+	\end{figure}
+}
+
+\begin{document}
+
+\section{Adjacency Matrix}
+
+An \emph{adjacency matrix} $A$ is the $|V|\times|V|$ matrix representation of a graph $G=(V,E)$.
+As we are only considering simple graphs, i.e., no loops exist, the diagonal alues are all 0, i.e., $A_{i,i} = 0, i \in [1, |V|]$.
+
+$A_{i,j}$ indicates if an edge from $v_i$ to $v_j$ exists, i.e., $A_{i,j} = 1 \equiv (v_i,v_j) \in E$.
+In the case of undirected graphs, we simply set $A_{i,j} = A_{j,i}$ which results in an adjacency matrix mirrored at the diagonal, i.e., $A_{i,j} = A_{j,i} = 1 \equiv \{v_i,v_j\} \in E$.
+
+As an example take the following two graphs:
+
+\missing{graph / adjacency matrix example}
+
+The adjacency matrix of a directed graph can be written as a sequence of boolean values of length $|V|\cdot(|V|-1)$.
+The adjacency matrix of an undirected graph is mirrored at the diagonal and can therefore be represented as a sequence of length $\frac{|V|\cdot(|V|-1)}{2}$.
+
+\eqn{a = a_1, a_2, \dots a_{\frac{|V|\cdot(|V|-1)}{2}} = A_{1,2}, A_{1,2}, \dots A_{1,|V|}, A_{2,3}, A_{2,4}, \dots A_{|V|-1,|V|}}
+
+As examples, consider the boolean sequence representation for 3-, 4-, and 5-vertex graphs:
+
+\eqna{
+	3: && A_{1,2}, A_{1,3}, A_{2,3} = a_1, a_2, a_3 \\
+	4: && A_{1,2}, A_{1,3}, A_{1,4}, A_{2,3}, A_{2,4}, A_{3,4} = a_1, a_2, \dots a_6 \\
+	5: && A_{1,2}, A_{1,3}, A_{1,4}, A_{1,5}, A_{2,3}, A_{2,4}, A_{2,5}, A_{3,4}, A_{3,5}, A_{4,5} = a_1, a_2, \dots a_{10}
+}
+
+Therefore, all possible adjacency matrices for a given graph size $|V|$ can be represented as the set ${\cal A}^{|V|} = \{0,1\}^{\frac{|V|\cdot(|V|-1)}{2}}$.
+Each element from this set can also be interpreted as a number $n(a) \in \mathbb{N}$ as follows:
+
+\eqn{n(a) = n(A) = \sum_{i=1}^{\frac{|V|\cdot(|V|-1)}{2}} 2^{i-1} \cdot a_i}
+
+Hence, we can represent adjacency matrices as simple numbers:
+
+\missing{example of adjacency matrix and their key}
+
+\todo{introduce the nummber as ``key'' of an adjacency matrix}
+\todo{introduce the induced adjacency matrix of a set of nodes (mentioning the order)}
+\todo{introduce a set of all numbers / keys that represent connected adjacency matrices}
+
+
+
+
+
+\section{Motifs}
+
+We consider an undirected graph to be connected if there exists a path between each pair of vertices.
+We denote the set of connected adjacency matrices of $k$-vertex graphs ($k \geq 2$) as ${\cal A}^{|V|}_{con} \subset {\cal A}^{|V|}$.
+
+As motifs of size $k$, also called $k$-vertex motifs or $k$-motifs, we consider the equivalence classes of isomorph connected k-vertex graphs which we denote as ${\cal M}_k$.
+
+Each connected adjacency matrix is assigned to exactly one motif $m \in {\cal M}$.
+This assignment can be expressed as a function that maps a connected adjacency matrix to a motif, i.e.,
+
+\eqn{r : {\cal A}^k \rightarrow {\cal M}_k}
+
+\todo{define as mapping from $\mathbb{N}$}
+
+This assignment can be easily computed by enumerating all connected adjacency matrices and determining their equivalence class by performing an isomorphism check with all existing motifs.
+
+
+
+
+\section{Implementation}
+
+For simplicity, we store the function $r$ as integer pairs $(a,b)$ where $a$ is hte key of a connected adjacency matrix and $b$ the equivalence class it belongs to.
+
+
+
+
+
+
+\section{Statistics}
+
+\begin{table}[!h]
+\begin{tabular}{crrr}
+\toprule
+nodes	& ams	& motifs	& maxKey \\
+\midrule
+2	& 1	& 1	& 1 \\
+3	& 4	& 2	& 7 \\
+4	& 38	& 6	& 63 \\
+5	& 728	& 21	& 1023 \\
+6	& 26704	& 112	& 32767 \\
+7	& 1866256	& 853	& 2097151 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\imgs{um-stats}{fig:um-stats}{stats of undirected motifs}{0.4}{um-stats-labeled}{fig:um-stats-labeled}{stats of undirected motifs}{0.4}
+
+
+
+
+
+\section{k-Neighborhood of an edge}
+
+As the \emph{k-Neighborhood} $N(a,b)$ of an edge $\{a,b\}$, we denote the set of all $(k-2)$-tuples of vertices that are connected to vertices $a$ or $b$.
+Thereby, each element of $N(a,b)$ corresponds to a connected subgraph of $G$ that contains $a$ and $b$.
+
+For each induced subgraph $G \cap (\{a,b\} \cup n \in N(a,b))$, we can determine the corresponding motif as follows:
+
+\eqn{r(n(A_{\{a,b\} \cup N(a,b)}))}
+
+in case the edge exists already, we can determine the new motif after the edge removal as follows:
+
+\eqn{r(n(A_{\{a,b\} \cup N(a,b)})-1)}
+
+In case the edge is added, the new state of the motif is computed as follows:
+
+\eqn{r(n(A_{\{a,b\} \cup N(a,b)})+1)}
+
+
+
+
+
+\section{Algorithm}
+
+
+\newcommand{\mcount}{{\cal F}}
+\newcommand{\mcountof}[1]{{\cal F}(\motif{#1})}
+\newcommand{\mcountofat}[2]{{\cal F}_{#2}(\motif{#1})}
+
+\newcommand{\operation}{{\cal O}}
+\newcommand{\signature}{{\cal S}}
+\newcommand{\signatureofabcd}{\signature(a,b,c,d)}
+
+
+\begin{algorithm}[!htb]
+	\KwData{$G, \{a,b\}, type \in \{add, rm\}$}
+	\SetKwComment{Comment}{/* }{ */}
+	\Begin{
+		\For{$n \in N(a,b)$}{
+			\uIf{$type = add$}{
+				\Comment*[r]{edge is added}
+				${\cal F}(r(n(A_{\{a,b\} \cup n}) + 1))$ += 1 \Comment*[r]{incr new motif}
+				\uIf{$n(A_{\{a,b\} \cup n}) \in {\cal N}^k_{con}$}{
+					${\cal F}(r(n(A_{\{a,b\} \cup n})))$ -= 1 \Comment*[r]{decr old motif}
+				}
+			}
+      		\uElseIf{$type = rm$}{
+      			\Comment*[r]{edge is removed}
+				${\cal F}(r(n(A_{\{a,b\} \cup n})))$ -= 1 \Comment*[r]{decr old motif}
+       			\uIf{$n(A_{\{a,b\} \cup n})-1 \in {\cal N}^k_{con}$}{
+					${\cal F}(r(n(A_{\{a,b\} \cup n})-1))$ += 1 \Comment*[r]{incr new motif}
+				}
+			}
+		}
+	}
+	\caption{\emph{StreaM$_k$} for maintaining $\mcount$ in dynamic graphs}
+	\label{alg:u}
+\end{algorithm}
+\todo{change set of connected keys to defined version}
+
+
+
+
+
+
+
+
+\end{document}
