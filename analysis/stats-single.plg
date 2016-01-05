@@ -1,0 +1,22 @@
+set terminal png
+set xrange [1:*]
+
+set title datasetName
+set xlabel "timestamp"
+
+set output outFile."-0-all.png"
+plot 	dataFile using 2:3 with points lw 1 lt 1 title "edge additions", \
+		dataFile using 2:4 with points lw 1 lt 2 title "edge removals", \
+		dataFile using 2:($3+$4) with points lw 1 lt 3 title "total updates (add + rem)"
+
+set output outFile."-1-add.png"
+plot 	dataFile using 2:3 with points lw 1 lt 1 title "edge additions"
+
+set output outFile."-2-remove.png"
+plot 	dataFile using 2:4 with points lw 1 lt 2 title "edge removals"
+
+set output outFile."-3-updates.png"
+plot 	dataFile using 2:($3+$4) with points lw 1 lt 3 title "total updates (add + rem)"
+
+set output outFile."-4-edges.png"
+plot 	dataFile using 2:6 with points lw 1 lt 4 title "number of edges"

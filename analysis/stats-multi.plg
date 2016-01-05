@@ -1,0 +1,30 @@
+set terminal png
+set style fill solid 1.0
+set key left top
+set yrange [0:*]
+
+set xlabel "distance threshold"
+
+set boxwidth 0.2
+set output outFile."-0-all.png"
+set title datasetName." - total"
+plot 	dataFile using ($1-0.3):7 with boxes lw 4 lt 1 title "edge additions", \
+		dataFile using ($1):8 with boxes lw 4 lt 2 title "edge removals", \
+		dataFile using ($1+0.3):($7+$8) with boxes lw 4 lt 3 title "updates (add + rem)"
+
+set output outFile."-1-allPerState.png"
+set title datasetName." - average per state"
+plot 	dataFile using ($1-0.3):($7/$4) with boxes lw 4 lt 1 title "edge additions", \
+		dataFile using ($1):($8/$4) with boxes lw 4 lt 2 title "edge removals", \
+		dataFile using ($1+0.3):(($7+$8)/$4) with boxes lw 4 lt 3 title "updates (add + rem)"
+
+set output outFile."-2-allPerTimestamp.png"
+set title datasetName." - average per timestamp"
+plot 	dataFile using ($1-0.3):($7/($6+1)) with boxes lw 4 lt 1 title "edge additions", \
+		dataFile using ($1):($8/($6+1)) with boxes lw 4 lt 2 title "edge removals", \
+		dataFile using ($1+0.3):(($7+$8)/($6+1)) with boxes lw 4 lt 3 title "updates (add + rem)"
+
+set boxwidth 0.5
+
+set output outFile."-3-edges.png"
+plot 	dataFile using 1:3 with boxes lw 4 lt 4 title "initial edge count"

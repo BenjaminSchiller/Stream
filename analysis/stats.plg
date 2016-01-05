@@ -1,8 +1,0 @@
-set terminal png
-set output outFile
-
-set xrange [1:*]
-
-plot 	dataFile using 2:3 with points title "add", \
-		dataFile using 2:4 with points title "remove", \
-		dataFile using 2:($3+$4) with points title "add + remove"
