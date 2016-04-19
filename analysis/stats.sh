@@ -14,8 +14,11 @@ function plot_single {
 
 function stats_multi {
 	dataset=$1
-	file="$datasetDir/$dataset/_stats/$dataset.dat"
-	echo "# th	nodes	edge	states	firstTimestamp	lastTimestamp	additions	removals" > $file
+	sep=$2
+	suffix=$3
+	file="$datasetDir/$dataset/_stats/$dataset.$suffix"
+	echo "# $dataset" > $file
+	echo "# th${sep}nodes${sep}edge${sep}states${sep}firstTimestamp${sep}lastTimestamp${sep}additions${sep}removals" >> $file
 	for th in ${ths[@]}; do
 		nodes=$(head -n 1 "$datasetDir/$dataset/_stats/$dataset-$th.dat" | tail -n 1 | awk '{print $NF}')
 		edges=$(head -n 2 "$datasetDir/$dataset/_stats/$dataset-$th.dat" | tail -n 1 | awk '{print $NF}')
@@ -24,7 +27,7 @@ function stats_multi {
 		lastTimestamp=$(head -n 5 "$datasetDir/$dataset/_stats/$dataset-$th.dat" | tail -n 1 | awk '{print $NF}')
 		additions=$(head -n 6 "$datasetDir/$dataset/_stats/$dataset-$th.dat" | tail -n 1 | awk '{print $NF}')
 		removals=$(head -n 7 "$datasetDir/$dataset/_stats/$dataset-$th.dat" | tail -n 1 | awk '{print $NF}')
-		echo "$th	$nodes	$edges	$states	$firstTimestamp	$lastTimestamp	$additions	$removals" >> $file
+		echo "$th$sep$nodes$sep$edges$sep$states$sep$firstTimestamp$sep$lastTimestamp$sep$additions$sep$removals" >> $file
 	done
 }
 
@@ -37,14 +40,14 @@ function plot_multi {
 if [[ ! -d stats ]]; then mkdir stats; fi
 
 datasets=(loop complex pnb ans-short ans-long)
-datasets=(complex)
 ths=(7 8 9 10 11 12)
 
 for dataset in ${datasets[@]}; do
-	for th in ${ths[@]}; do
-		stats_single $dataset $th
-		plot_single $dataset $th
-	done
-	stats_multi $dataset
-	plot_multi $dataset
+	# for th in ${ths[@]}; do
+		# stats_single $dataset $th
+		# plot_single $dataset $th
+	# done
+	stats_multi $dataset '	' 'dat'
+	stats_multi $dataset ';' 'csv'
+	# plot_multi $dataset
 done
