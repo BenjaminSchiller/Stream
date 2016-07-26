@@ -1,6 +1,7 @@
 package stream.algorithms;
 
 import stream.util.Distribution;
+import stream.util.Results;
 
 public class DegreeDistribution extends Algorithm {
 
@@ -43,6 +44,11 @@ public class DegreeDistribution extends Algorithm {
 	@Override
 	public void printResults(int timestamp) {
 		System.out.println(distr);
+	}
+
+	@Override
+	public Results getResults() {
+		return new Results(this.distr);
 	}
 
 }

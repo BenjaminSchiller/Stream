@@ -1,6 +1,7 @@
 package stream.algorithms;
 
 import stream.graph.Graph;
+import stream.util.Results;
 
 public abstract class Algorithm {
 	protected String name;
@@ -39,4 +40,6 @@ public abstract class Algorithm {
 	public abstract void processAfterEdgeRemoval(int a, int b);
 
 	public abstract void printResults(int timestamp);
+
+	public abstract Results getResults();
 }

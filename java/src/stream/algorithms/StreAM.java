@@ -3,6 +3,8 @@ package stream.algorithms;
 import java.util.HashMap;
 
 import stream.algorithms.util.AdjacencyMatrixKey;
+import stream.util.Results;
+import stream.util.Value;
 
 public class StreAM extends Algorithm {
 
@@ -101,6 +103,11 @@ public class StreAM extends Algorithm {
 		System.out.println(key);
 		// System.out.println(key2);
 		// System.out.println(key + "	" + key2);
+	}
+
+	@Override
+	public Results getResults() {
+		return new Results(new Value<Integer>("key", key));
 	}
 
 }

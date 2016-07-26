@@ -47,9 +47,6 @@ public class GraphProcessing {
 				break;
 			}
 
-			// System.out.println("p = " + previousTimestamp + "   c = "
-			// + currentTimestamp);
-
 			if (previousTimestamp != -1
 					&& currentTimestamp != previousTimestamp) {
 				if (printForEachTimestamp) {
@@ -112,6 +109,8 @@ public class GraphProcessing {
 	protected static void printResults(Algorithm[] algorithms, int timestamp) {
 		for (Algorithm alg : algorithms) {
 			alg.printResults(timestamp);
+			// you can get all results usingthe following expression:
+			// Results res = alg.getResults();
 		}
 	}
 }

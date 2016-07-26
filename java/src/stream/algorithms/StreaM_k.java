@@ -8,6 +8,7 @@ import stream.algorithms.util.UndirectedMotifsMapping;
 import stream.algorithms.util.VertexGroup;
 import stream.graph.Vertex;
 import stream.util.Distribution;
+import stream.util.Results;
 
 public class StreaM_k extends Algorithm {
 
@@ -220,5 +221,10 @@ public class StreaM_k extends Algorithm {
 	@Override
 	public void printResults(int timestamp) {
 		System.out.println(this.motifs);
+	}
+
+	@Override
+	public Results getResults() {
+		return new Results(this.motifs);
 	}
 }
