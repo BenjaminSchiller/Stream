@@ -1,0 +1,10 @@
+\begin{tikzpicture}
+\def \radius {3cm}
+\draw (90:3) node[circle,draw] (v0) {0};
+\draw (0:3) node[circle,draw] (v1) {1};
+\draw (270:3) node[circle,draw] (v2) {2};
+\draw (180:3) node[circle,draw] (v3) {3};
+\path[-] (v0) edge [thick]  (v2);
+\path[-] (v0) edge [thick]  (v3);
+\path[-] (v1) edge [thick]  (v3);
+\end{tikzpicture}
