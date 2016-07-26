@@ -1,4 +1,4 @@
-package streaM_k.test;
+package stream.test;
 
 public class TestKeys {
 

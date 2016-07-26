@@ -4,7 +4,7 @@
     <target name="datasets">
         <jar destfile="datasetsForStream.jar" filesetmanifest="mergewithoutmain">
             <manifest>
-                <attribute name="Main-Class" value="streaM_k.util.DatasetTransformation"/>
+                <attribute name="Main-Class" value="stream.util.DatasetTransformation"/>
                 <attribute name="Class-Path" value="."/>
             </manifest>
             <fileset dir="/Users/benni/TUD/Projects/ArgList/bin"/>
@@ -14,7 +14,7 @@
     <target name="stats">
         <jar destfile="streamStats.jar" filesetmanifest="mergewithoutmain">
             <manifest>
-                <attribute name="Main-Class" value="streaM_k.util.DatasetStats"/>
+                <attribute name="Main-Class" value="stream.util.DatasetStats"/>
                 <attribute name="Class-Path" value="."/>
             </manifest>
             <fileset dir="/Users/benni/TUD/Projects/ArgList/bin"/>
@@ -24,7 +24,7 @@
     <target name="stream">
         <jar destfile="stream.jar" filesetmanifest="mergewithoutmain">
             <manifest>
-                <attribute name="Main-Class" value="streaM_k.util.Analysis"/>
+                <attribute name="Main-Class" value="stream.util.Analysis"/>
                 <attribute name="Class-Path" value="."/>
             </manifest>
             <fileset dir="/Users/benni/TUD/Projects/ArgList/bin"/>

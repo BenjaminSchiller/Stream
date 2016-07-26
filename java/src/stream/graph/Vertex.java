@@ -1,4 +1,4 @@
-package streaM_k.graph;
+package stream.graph;
 
 import java.util.ArrayList;
 

@@ -1,6 +1,6 @@
-package streaM_k.algorithm.util;
+package stream.algorithms.util;
 
-import streaM_k.graph.Graph;
+import stream.graph.Graph;
 
 public class AdjacencyMatrixKey {
 	public static int getKey(Graph graph, int... vertices) {

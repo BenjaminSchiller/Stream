@@ -1,6 +1,6 @@
-package streaM_k.algorithm;
+package stream.algorithms;
 
-import streaM_k.graph.Graph;
+import stream.graph.Graph;
 
 public abstract class Algorithm {
 	protected String name;

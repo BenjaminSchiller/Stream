@@ -1,8 +1,8 @@
-package streaM_k.test;
+package stream.test;
 
 import java.util.HashSet;
 
-import streaM_k.algorithm.util.VertexGroup;
+import stream.algorithms.util.VertexGroup;
 
 public class TestGroups {
 

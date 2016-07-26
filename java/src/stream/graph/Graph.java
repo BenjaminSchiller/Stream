@@ -1,4 +1,4 @@
-package streaM_k.graph;
+package stream.graph;
 
 public class Graph {
 	public Vertex[] V;

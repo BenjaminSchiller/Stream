@@ -1,13 +1,13 @@
-package streaM_k.algorithm;
+package stream.algorithms;
 
 import java.io.IOException;
 import java.util.HashSet;
 
-import streaM_k.algorithm.util.AdjacencyMatrixKey;
-import streaM_k.algorithm.util.UndirectedMotifsMapping;
-import streaM_k.algorithm.util.VertexGroup;
-import streaM_k.graph.Vertex;
-import streaM_k.util.Distribution;
+import stream.algorithms.util.AdjacencyMatrixKey;
+import stream.algorithms.util.UndirectedMotifsMapping;
+import stream.algorithms.util.VertexGroup;
+import stream.graph.Vertex;
+import stream.util.Distribution;
 
 public class StreaM_k extends Algorithm {
 

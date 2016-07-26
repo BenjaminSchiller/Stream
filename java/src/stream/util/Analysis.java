@@ -1,12 +1,12 @@
-package streaM_k.util;
+package stream.util;
 
 import java.io.IOException;
 
-import streaM_k.algorithm.Algorithm;
-import streaM_k.algorithm.DegreeDistribution;
-import streaM_k.algorithm.StreAM;
-import streaM_k.algorithm.StreaM_k;
-import streaM_k.graph.GraphProcessing;
+import stream.algorithms.Algorithm;
+import stream.algorithms.DegreeDistribution;
+import stream.algorithms.StreAM;
+import stream.algorithms.StreaM_k;
+import stream.graph.GraphProcessing;
 import argList.ArgList;
 import argList.types.array.EnumArrayArg;
 import argList.types.array.StringArrayArg;

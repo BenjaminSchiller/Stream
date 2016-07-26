@@ -1,11 +1,11 @@
-package streaM_k.graph;
+package stream.graph;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 
-import streaM_k.algorithm.Algorithm;
-import streaM_k.util.Timer;
+import stream.algorithms.Algorithm;
+import stream.util.Timer;
 
 public class GraphProcessing {
 	public static final String sep = "	";

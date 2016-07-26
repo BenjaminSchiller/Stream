@@ -1,8 +1,8 @@
-package streaM_k.algorithm;
+package stream.algorithms;
 
 import java.util.HashMap;
 
-import streaM_k.algorithm.util.AdjacencyMatrixKey;
+import stream.algorithms.util.AdjacencyMatrixKey;
 
 public class StreAM extends Algorithm {
 

@@ -1,6 +1,6 @@
-package streaM_k.algorithm;
+package stream.algorithms;
 
-import streaM_k.util.Distribution;
+import stream.util.Distribution;
 
 public class DegreeDistribution extends Algorithm {
 

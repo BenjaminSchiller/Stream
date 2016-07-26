@@ -1,8 +1,8 @@
-package streaM_k.test;
+package stream.test;
 
 import java.util.ArrayList;
 
-import streaM_k.graph.Vertex;
+import stream.graph.Vertex;
 
 public class TestAdjacencyList {
 

@@ -1,4 +1,4 @@
-package streaM_k.util;
+package stream.util;
 
 public class Distribution {
 	protected String name;

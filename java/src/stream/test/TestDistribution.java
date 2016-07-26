@@ -1,6 +1,6 @@
-package streaM_k.test;
+package stream.test;
 
-import streaM_k.util.Distribution;
+import stream.util.Distribution;
 
 public class TestDistribution {
 

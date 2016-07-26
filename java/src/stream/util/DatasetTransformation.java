@@ -1,10 +1,10 @@
-package streaM_k.util;
+package stream.util;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 
-import streaM_k.graph.GraphProcessing;
+import stream.graph.GraphProcessing;
 import argList.ArgList;
 import argList.types.atomic.IntArg;
 import argList.types.atomic.StringArg;

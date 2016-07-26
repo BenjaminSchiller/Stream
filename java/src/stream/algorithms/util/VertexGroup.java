@@ -1,4 +1,4 @@
-package streaM_k.algorithm.util;
+package stream.algorithms.util;
 
 import java.util.Arrays;
 
